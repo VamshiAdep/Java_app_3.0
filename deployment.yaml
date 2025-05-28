@@ -12,14 +12,12 @@ spec:
       labels:
         app: myjavaapp
     spec:
+      serviceAccountName: myapp-sa   # <-- add this here
       containers:
       - name: myjavaapp
         image: vamshiadep21/javapp:latest
-
-
         ports:
         - containerPort: 8080
-
 ---
 apiVersion: v1
 kind: Service
