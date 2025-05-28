@@ -14,8 +14,9 @@ spec:
     spec:
       containers:
       - name: myjavaapp
-        image: vamshiadep21/javaapp3.0:latest
-        
+        image: vamshiadep21/javapp:latest
+
+
         ports:
         - containerPort: 8080
 
