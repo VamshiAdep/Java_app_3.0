@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: myjavaapp
-        image: 600735812827.dkr.ecr.us-west-1.amazonaws.com/javasession2:latest
+        image: vamshiadep21/javaapp3.0:latest
         ports:
         - containerPort: 8080
 
@@ -30,4 +30,4 @@ spec:
   - name: http
     port: 80
     targetPort: 8080
-  type: LoadBalancer
+  type: NodePort
