@@ -105,20 +105,25 @@ pipeline {
         }
     }
 
-    post {
-        success {
+  post {
+    success {
+        withCredentials([string(credentialsId: 'slack-webhook-url', variable: 'SLACK_URL')]) {
             slackSend(
                 channel: '#build-notifications',
                 message: "✅ Build SUCCESS: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
-                webhookUrl: 'https://hooks.slack.com/services/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'
-            )
-        }
-        failure {
-            slackSend(
-                channel: '#build-notifications',
-                message: "❌ Build FAILED: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
-                webhookUrl: 'https://hooks.slack.com/services/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'
+                webhookUrl: "${SLACK_URL}"
             )
         }
     }
+    failure {
+        withCredentials([string(credentialsId: 'slack-webhook-url', variable: 'SLACK_URL')]) {
+            slackSend(
+                channel: '#build-notifications',
+                message: "❌ Build FAILED: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+                webhookUrl: "${SLACK_URL}"
+            )
+        }
+    }
+}
+
 }
